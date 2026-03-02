@@ -88,6 +88,7 @@ def main(page: ft.Page):
             txt_number.value = check_value(str(int(txt_number.value) + 1))
             page.update()
     
+    # Limpa o log de rolagens
     def clear_rolls_log():
         txt_result.value = str(0)
         txt_number.value = str(0)
