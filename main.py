@@ -30,6 +30,7 @@ def main(page: ft.Page):
     def plus_click(e: ft.TextButton):
         change_values(e, 1)
     
+    # Função para aplicar as alterações de valores dos seletores de quantidade
     def change_values(e: ft.TextButton, button):
         # 0 = Botão sinal de "-"
         # 1 = Botão sinal de "+"
@@ -56,6 +57,7 @@ def main(page: ft.Page):
 
         page.update() # Atualiza a interface
     
+    # Função para resetar os valores dos seletores de quantidade
     def reset_values():
         txt_quantity_d4.value = "0"
         txt_quantity_d6.value = "0"
@@ -63,6 +65,7 @@ def main(page: ft.Page):
         txt_quantity_d10.value = "0"
         txt_quantity_d12.value = "0"
         txt_quantity_d20.value = "0"
+        page.update() # Atualiza a interface
 
     # Função para verificar o valor da quantidade selecionada
     # Para que não seja possível escolher um valor negativo
@@ -71,6 +74,7 @@ def main(page: ft.Page):
             value = "0"
         return value
 
+    # Função que executará a rolagem
     def execute_roll():
         roll_result = 0
         roll_sum = 0
@@ -79,6 +83,7 @@ def main(page: ft.Page):
         final_result = 0
         final_detail = ""
 
+        # Rolagens D4
         if int(txt_quantity_d4.value) > 0:
             roll_count = int(txt_quantity_d4.value)
             while roll_count > 0:
@@ -94,6 +99,7 @@ def main(page: ft.Page):
         roll_sum = 0
         roll_detail = ""
 
+        # Rolagens D6
         if int(txt_quantity_d6.value) > 0:
             roll_count = int(txt_quantity_d6.value)
             while roll_count > 0:
@@ -109,6 +115,7 @@ def main(page: ft.Page):
         roll_sum = 0
         roll_detail = ""
 
+        # Rolagens D8
         if int(txt_quantity_d8.value) > 0:
             roll_count = int(txt_quantity_d8.value)
             while roll_count > 0:
@@ -124,6 +131,7 @@ def main(page: ft.Page):
         roll_sum = 0
         roll_detail = ""
 
+        # Rolagens D10
         if int(txt_quantity_d10.value) > 0:
             roll_count = int(txt_quantity_d10.value)
             while roll_count > 0:
@@ -139,6 +147,7 @@ def main(page: ft.Page):
         roll_sum = 0
         roll_detail = ""
 
+        # Rolagens D12
         if int(txt_quantity_d12.value) > 0:
             roll_count = int(txt_quantity_d12.value)
             while roll_count > 0:
@@ -154,6 +163,7 @@ def main(page: ft.Page):
         roll_sum = 0
         roll_detail = ""
 
+        # Rolagens D20
         if int(txt_quantity_d20.value) > 0:
             roll_count = int(txt_quantity_d20.value)
             while roll_count > 0:
