@@ -10,7 +10,7 @@ def main(page: ft.Page):
     # Campo de texto que exibirá o resultado da rolagem dos dados
     txt_result = ft.Text(value="0", size=60, text_align=ft.TextAlign.CENTER, width=100, disabled=True)
     # Campo de texto que exibirá o resultado detalhado da rolagem dos dados
-    txt_result_detail = ft.Text(value="", size=14, text_align=ft.TextAlign.CENTER, width=500, disabled=True, visible=False)
+    txt_result_detail = ft.Text(value="---", size=14, text_align=ft.TextAlign.CENTER, width=500, disabled=True)
 
     # Campo de texto que mostrará a quantidade de dados à ser rolada
     txt_quantity_d4 = ft.TextField(label="D4", text_size=30, value="0", width=60, text_align=ft.TextAlign.CENTER, read_only=True)
@@ -36,8 +36,7 @@ def main(page: ft.Page):
         # 0 = Botão sinal de "-"
         # 1 = Botão sinal de "+"
         txt_result.value = str(0)
-        txt_result.color = None
-        txt_result_detail.visible = False
+        txt_result_detail.value = "---"
 
         if button == 0:  
             match e.control.key:
@@ -92,39 +91,38 @@ def main(page: ft.Page):
             dice_d6 = Dice("D6", int(txt_quantity_d6.value), 6)
             dice_d6.roll_dice()
             roll_total_value = roll_total_value + dice_d6.roll_result
-            roll_total_text = roll_total_text + dice_d6.roll_text
+            roll_total_text = f"{dice_d6.roll_text}" if roll_total_text == "" else f" {roll_total_text} + {dice_d6.roll_text}"
 
         # Rolagens D8
         if int(txt_quantity_d8.value) > 0:
             dice_d8 = Dice("D8", int(txt_quantity_d8.value), 8)
             dice_d8.roll_dice()
             roll_total_value = roll_total_value + dice_d8.roll_result
-            roll_total_text = roll_total_text + dice_d8.roll_text
+            roll_total_text = f"{dice_d8.roll_text}" if roll_total_text == "" else f" {roll_total_text} + {dice_d8.roll_text}"
 
         # Rolagens D10
         if int(txt_quantity_d10.value) > 0:
             dice_d10 = Dice("D10", int(txt_quantity_d10.value), 10)
             dice_d10.roll_dice()
             roll_total_value = roll_total_value + dice_d10.roll_result
-            roll_total_text = roll_total_text + dice_d10.roll_text
+            roll_total_text = f"{dice_d10.roll_text}" if roll_total_text == "" else f" {roll_total_text} + {dice_d10.roll_text}"
 
         # Rolagens D12
         if int(txt_quantity_d12.value) > 0:
             dice_d12 = Dice("D12", int(txt_quantity_d12.value), 12)
             dice_d12.roll_dice()
             roll_total_value = roll_total_value + dice_d12.roll_result
-            roll_total_text = roll_total_text + dice_d12.roll_text
+            roll_total_text = f"{dice_d12.roll_text}" if roll_total_text == "" else f" {roll_total_text} + {dice_d12.roll_text}"
 
         # Rolagens D20
         if int(txt_quantity_d20.value) > 0:
             dice_d20 = Dice("D20", int(txt_quantity_d20.value), 20)
             dice_d20.roll_dice()
             roll_total_value = roll_total_value + dice_d20.roll_result
-            roll_total_text = roll_total_text + dice_d20.roll_text
+            roll_total_text = f"{dice_d20.roll_text}" if roll_total_text == "" else f" {roll_total_text} + {dice_d20.roll_text}"
         
         txt_result.value = f"{roll_total_value}"
         txt_result_detail.value = f"{roll_total_text}"
-        txt_result_detail.visible = True
         reset_values()
 
     # Adiciona os elementos na página
@@ -195,6 +193,3 @@ def main(page: ft.Page):
 
 # Executa o app
 ft.app(target=main)
-
-if __name__ == "__main__":
-    main()

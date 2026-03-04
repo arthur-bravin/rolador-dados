@@ -13,10 +13,12 @@ class Dice:
 
     def roll_dice(self):
         roll_count = self.quantity
+        roll = 0
 
         while roll_count > 0:
-            self.roll_result = self.roll_result + rd.randint(1, self.faces)
-            self.roll_text = f"({self.roll_result}" if self.roll_text == "" else self.roll_result + f" + {self.roll_result}"
+            roll = rd.randint(1, self.faces)
+            self.roll_result = self.roll_result + roll
+            self.roll_text = f"{self.type}({roll}" if self.roll_text == "" else self.roll_text + f" + {roll}"
             roll_count = roll_count -1
 
         self.roll_text = f"{self.roll_text})"
