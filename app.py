@@ -1,5 +1,6 @@
 import flet as ft
 import random as rd
+from model.dice import Dice
 
 # Função MAIN
 def main(page: ft.Page):
@@ -76,110 +77,54 @@ def main(page: ft.Page):
 
     # Função que executará a rolagem
     def execute_roll():
-        roll_result = 0
-        roll_sum = 0
-        roll_detail = ""
-        roll_count = 0
-        final_result = 0
-        final_detail = ""
+        roll_total_text = ""
+        roll_total_value = 0
 
         # Rolagens D4
         if int(txt_quantity_d4.value) > 0:
-            roll_count = int(txt_quantity_d4.value)
-            while roll_count > 0:
-                roll_result = rd.randint(1, 4)
-                roll_sum = roll_sum + roll_result
-                roll_detail = f"{roll_result}" if roll_detail == "" else roll_detail + f" + {roll_result}"
-                roll_count = roll_count -1
-
-            final_result = final_result + roll_sum
-            final_detail = f"D4({roll_detail})"
-
-        roll_result = 0
-        roll_sum = 0
-        roll_detail = ""
+            dice_d4 = Dice("D4", int(txt_quantity_d4.value), 4)
+            dice_d4.roll_dice()
+            roll_total_value = roll_total_value + dice_d4.roll_result
+            roll_total_text = roll_total_text + dice_d4.roll_text
 
         # Rolagens D6
         if int(txt_quantity_d6.value) > 0:
-            roll_count = int(txt_quantity_d6.value)
-            while roll_count > 0:
-                roll_result = rd.randint(1, 6)
-                roll_sum = roll_sum + roll_result
-                roll_detail = f"{roll_result}" if roll_detail == "" else roll_detail + f" + {roll_result}"
-                roll_count = roll_count -1
-
-            final_result = final_result + roll_sum
-            final_detail = final_detail + f"D6({roll_detail})" if final_detail == "" else final_detail + f" + D6({roll_detail})"
-
-        roll_result = 0
-        roll_sum = 0
-        roll_detail = ""
+            dice_d6 = Dice("D6", int(txt_quantity_d6.value), 6)
+            dice_d6.roll_dice()
+            roll_total_value = roll_total_value + dice_d6.roll_result
+            roll_total_text = roll_total_text + dice_d6.roll_text
 
         # Rolagens D8
         if int(txt_quantity_d8.value) > 0:
-            roll_count = int(txt_quantity_d8.value)
-            while roll_count > 0:
-                roll_result = rd.randint(1, 8)
-                roll_sum = roll_sum + roll_result
-                roll_detail = f"{roll_result}" if roll_detail == "" else roll_detail + f" + {roll_result}"
-                roll_count = roll_count -1
-
-            final_result = final_result + roll_sum
-            final_detail = final_detail + f"D8({roll_detail})" if final_detail == "" else final_detail + f" + D8({roll_detail})"
-
-        roll_result = 0
-        roll_sum = 0
-        roll_detail = ""
+            dice_d8 = Dice("D8", int(txt_quantity_d8.value), 8)
+            dice_d8.roll_dice()
+            roll_total_value = roll_total_value + dice_d8.roll_result
+            roll_total_text = roll_total_text + dice_d8.roll_text
 
         # Rolagens D10
         if int(txt_quantity_d10.value) > 0:
-            roll_count = int(txt_quantity_d10.value)
-            while roll_count > 0:
-                roll_result = rd.randint(1, 10)
-                roll_sum = roll_sum + roll_result
-                roll_detail = f"{roll_result}" if roll_detail == "" else roll_detail + f" + {roll_result}"
-                roll_count = roll_count -1
-
-            final_result = final_result + roll_sum
-            final_detail = final_detail + f"D10({roll_detail})" if final_detail == "" else final_detail + f" + D10({roll_detail})"
-
-        roll_result = 0
-        roll_sum = 0
-        roll_detail = ""
+            dice_d10 = Dice("D10", int(txt_quantity_d10.value), 10)
+            dice_d10.roll_dice()
+            roll_total_value = roll_total_value + dice_d10.roll_result
+            roll_total_text = roll_total_text + dice_d10.roll_text
 
         # Rolagens D12
         if int(txt_quantity_d12.value) > 0:
-            roll_count = int(txt_quantity_d12.value)
-            while roll_count > 0:
-                roll_result = rd.randint(1, 12)
-                roll_sum = roll_sum + roll_result
-                roll_detail = f"{roll_result}" if roll_detail == "" else roll_detail + f" + {roll_result}"
-                roll_count = roll_count -1
-
-            final_result = final_result + roll_sum
-            final_detail = final_detail + f"D12({roll_detail})" if final_detail == "" else final_detail + f" + D12({roll_detail})"
-
-        roll_result = 0
-        roll_sum = 0
-        roll_detail = ""
+            dice_d12 = Dice("D12", int(txt_quantity_d12.value), 12)
+            dice_d12.roll_dice()
+            roll_total_value = roll_total_value + dice_d12.roll_result
+            roll_total_text = roll_total_text + dice_d12.roll_text
 
         # Rolagens D20
         if int(txt_quantity_d20.value) > 0:
-            roll_count = int(txt_quantity_d20.value)
-            while roll_count > 0:
-                roll_result = rd.randint(1, 20)
-                roll_sum = roll_sum + roll_result
-                roll_detail = f"{roll_result}" if roll_detail == "" else roll_detail + f" + {roll_result}"
-                roll_count = roll_count -1
-
-            final_result = final_result + roll_sum
-            final_detail = final_detail + f"D20({roll_detail})" if final_detail == "" else final_detail + f" + D20({roll_detail})"
-
-        final_detail = f"{final_detail} = {final_result}"
-        txt_result.value = final_result
-        txt_result_detail.value = final_detail
+            dice_d20 = Dice("D20", int(txt_quantity_d20.value), 20)
+            dice_d20.roll_dice()
+            roll_total_value = roll_total_value + dice_d20.roll_result
+            roll_total_text = roll_total_text + dice_d20.roll_text
+        
+        txt_result.value = f"{roll_total_value}"
+        txt_result_detail.value = f"{roll_total_text}"
         txt_result_detail.visible = True
-
         reset_values()
 
     # Adiciona os elementos na página
@@ -238,7 +183,11 @@ def main(page: ft.Page):
         ft.Row([],alignment=ft.MainAxisAlignment.CENTER,),
         ft.Row(
             [
-                ft.TextButton(content="Rolar", width=150, height=60, style=ft.ButtonStyle(bgcolor=ft.Colors.LIGHT_BLUE, color=ft.Colors.WHITE, padding=ft.Padding.all(20)), on_click=execute_roll),
+                ft.TextButton(content="Rolar", width=150, height=60, 
+                              style=ft.ButtonStyle(bgcolor=ft.Colors.LIGHT_BLUE, 
+                                                   color=ft.Colors.WHITE, 
+                                                   padding=ft.Padding.all(20)), 
+                              on_click=execute_roll),
             ],
             alignment=ft.MainAxisAlignment.CENTER,
         )
@@ -246,3 +195,6 @@ def main(page: ft.Page):
 
 # Executa o app
 ft.app(target=main)
+
+if __name__ == "__main__":
+    main()
