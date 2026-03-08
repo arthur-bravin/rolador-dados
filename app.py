@@ -83,7 +83,7 @@ def main(page: ft.Page):
         if int(txt_quantity_d4.value) > 0:
             dice_d4 = Dice("D4", int(txt_quantity_d4.value), 4)
             dice_d4.roll_dice()
-            roll_total_value = roll_total_value + dice_d4.roll_result
+            roll_total_value += dice_d4.roll_result
             roll_total_text = roll_total_text + dice_d4.roll_text
 
         # Rolagens D6
@@ -97,28 +97,28 @@ def main(page: ft.Page):
         if int(txt_quantity_d8.value) > 0:
             dice_d8 = Dice("D8", int(txt_quantity_d8.value), 8)
             dice_d8.roll_dice()
-            roll_total_value = roll_total_value + dice_d8.roll_result
+            roll_total_value += dice_d8.roll_result
             roll_total_text = f"{dice_d8.roll_text}" if roll_total_text == "" else f" {roll_total_text} + {dice_d8.roll_text}"
 
         # Rolagens D10
         if int(txt_quantity_d10.value) > 0:
             dice_d10 = Dice("D10", int(txt_quantity_d10.value), 10)
             dice_d10.roll_dice()
-            roll_total_value = roll_total_value + dice_d10.roll_result
+            roll_total_value += dice_d10.roll_result
             roll_total_text = f"{dice_d10.roll_text}" if roll_total_text == "" else f" {roll_total_text} + {dice_d10.roll_text}"
 
         # Rolagens D12
         if int(txt_quantity_d12.value) > 0:
             dice_d12 = Dice("D12", int(txt_quantity_d12.value), 12)
             dice_d12.roll_dice()
-            roll_total_value = roll_total_value + dice_d12.roll_result
+            roll_total_value += dice_d12.roll_result
             roll_total_text = f"{dice_d12.roll_text}" if roll_total_text == "" else f" {roll_total_text} + {dice_d12.roll_text}"
 
         # Rolagens D20
         if int(txt_quantity_d20.value) > 0:
             dice_d20 = Dice("D20", int(txt_quantity_d20.value), 20)
             dice_d20.roll_dice()
-            roll_total_value = roll_total_value + dice_d20.roll_result
+            roll_total_value += dice_d20.roll_result
             roll_total_text = f"{dice_d20.roll_text}" if roll_total_text == "" else f" {roll_total_text} + {dice_d20.roll_text}"
         
         txt_result.value = f"{roll_total_value}"

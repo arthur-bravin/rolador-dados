@@ -17,7 +17,7 @@ class Dice:
 
         while roll_count > 0:
             roll = rd.randint(1, self.faces)
-            self.roll_result = self.roll_result + roll
+            self.roll_result += roll
             self.roll_text = f"{self.type}({roll}" if self.roll_text == "" else self.roll_text + f" + {roll}"
             roll_count = roll_count -1
 
